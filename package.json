@@ -14,5 +14,9 @@
         "prettier": "2.8.8",
         "vite": "^4.3.9",
         "vite-plugin-eslint": "^1.8.1"
+    },
+    "dependencies": {
+        "gsap": "^3.12.2",
+        "split-type": "^0.3.3"
     }
 }
