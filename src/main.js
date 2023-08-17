@@ -21,14 +21,18 @@ lines.forEach((line) => {
 //Control buttons
 const playBtn = document.querySelector('[animation-play]');
 const resetAllBtn = document.querySelector('[animation-reset-all]');
-const btnsSplitText = document.querySelectorAll('[animation-split-text]');
-const btnsDirection = document.querySelectorAll('[animation-direction]');
+//const btnsSplitText = document.querySelectorAll('[animation-split-text]');
+//const btnsDirection = document.querySelectorAll('[animation-direction]');
 const perspectiveResetBtn = document.querySelector(
     '[animation-pespective-reset]'
 );
-
+const targetSelect = document.querySelector('#targetSelect');
+const directionSelect = document.querySelector('#directionSelect');
 const transformOriginSelect = document.querySelector('#transformOriginSelect');
-const parentPerspectiveRange = document.querySelector('#perspectiveRange');
+
+const perspectiveRange = document.querySelector('#perspectiveRange');
+const staggerRange = document.querySelector('#staggerRange');
+
 const rotateXRange = document.querySelector('#rotateXRange');
 const rotateYRange = document.querySelector('#rotateYRange');
 const rotateZRange = document.querySelector('#rotateZRange');
@@ -86,55 +90,46 @@ playBtn.addEventListener('click', () => {
     createTimeline(target);
 });
 
-btnsSplitText.forEach((btn) => {
-    btn.addEventListener('click', () => {
-        const attr = btn.getAttribute('animation-split-text');
-
-        if (attr === 'lines') target = lines;
-        if (attr === 'words') target = words;
-        if (attr === 'chars') target = chars;
-
-        // target.forEach((el) => {
-        //   const parent = el.parentElement;
-        //   parent.style.perspective = `${parentPerspectiveRange.value}px`;
-        // });
-    });
+targetSelect.addEventListener('change', (e) => {
+    if (e.target.value === 'lines') target = lines;
+    if (e.target.value === 'words') target = words;
+    if (e.target.value === 'chars') target = chars;
+    perspectiveRange.value = 0;
+    setRangeVal(perspectiveRange);
 });
-
-btnsDirection.forEach((btn) => {
-    btn.addEventListener('click', () => {
-        const attr = btn.getAttribute('animation-direction');
-
-        if (attr === 'from-bottom') params.y = '100%';
-        if (attr === 'from-top') params.y = '-100%';
-    });
+directionSelect.addEventListener('change', (e) => {
+    if (e.target.value === 'from-bottom') params.y = '100%';
+    if (e.target.value === 'from-top') params.y = '-100%';
 });
 
 function setRangeVal(target) {
-    target.parentElement.querySelector('.range-value').textContent =
-        target.value;
+    target
+        .closest('.range_inner-wrap')
+        .querySelector('.range_value').textContent = target.value;
 }
 
 transformOriginSelect.addEventListener('change', () => {
     params.transformOrigin = transformOriginSelect.value;
 });
 
-parentPerspectiveRange.addEventListener('input', (e) => {
+perspectiveRange.addEventListener('input', (e) => {
     setRangeVal(e.target);
     target.forEach((el) => {
         const parent = el.parentElement;
         parent.style.perspective = `${e.target.value}px`;
-        //parent.style.transformStyle = "preserve-3d";
     });
 });
 
-perspectiveResetBtn.addEventListener('click', () => {
-    target.forEach((el) => {
-        const parent = el.parentElement;
-        parent.style.perspective = 'none';
-    });
+// perspectiveResetBtn.addEventListener('click', () => {
+//     target.forEach((el) => {
+//         const parent = el.parentElement;
+//         parent.style.perspective = 'none';
+//     });
+// });
+staggerRange.addEventListener('input', (e) => {
+    setRangeVal(e.target);
+    params.stagger.each = `${e.target.value}`;
 });
-
 rotateXRange.addEventListener('input', (e) => {
     setRangeVal(e.target);
     params.rotationX = `${e.target.value}`;
@@ -153,6 +148,10 @@ resetAllBtn.addEventListener('click', () => {
         input.value = 0;
         setRangeVal(input);
     });
+    document.querySelectorAll('select').forEach((input) => {
+        input.selectedIndex = 0;
+    });
+    target = lines;
     params = {
         y: '100%',
         stagger: { each: 0.1 },
