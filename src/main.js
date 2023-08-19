@@ -1,9 +1,12 @@
 console.log('heeeey');
 import SplitType from 'split-type';
 import { gsap } from 'gsap/all';
+
+import scriptPreview from './scriptPreview';
 const splittedText = new SplitType('.text-target', {
     types: 'lines, words, chars',
 });
+const textOriginal = document.querySelector('.text-target');
 const lines = document.querySelectorAll('.text-target .line');
 const words = document.querySelectorAll('.text-target .word');
 const chars = document.querySelectorAll('.text-target .char');
@@ -19,15 +22,17 @@ lines.forEach((line) => {
 });
 
 //Control buttons
-const playBtn = document.querySelector('[animation-play]');
-const resetAllBtn = document.querySelector('[animation-reset-all]');
-//const btnsSplitText = document.querySelectorAll('[animation-split-text]');
-//const btnsDirection = document.querySelectorAll('[animation-direction]');
+const playBtn = document.querySelector('[data-animation-play]');
+const resetAllBtn = document.querySelector('[data-animation-reset-all]');
+const scriptPreviewEL = document.querySelector('[data-script-preview]');
+const cssPreviewEL = document.querySelector('[data-css-preview]');
+
 const perspectiveResetBtn = document.querySelector(
     '[animation-pespective-reset]'
 );
 const targetSelect = document.querySelector('#targetSelect');
 const directionSelect = document.querySelector('#directionSelect');
+const alignmentSelect = document.querySelector('#alignmentSelect');
 const transformOriginSelect = document.querySelector('#transformOriginSelect');
 
 const perspectiveRange = document.querySelector('#perspectiveRange');
@@ -100,6 +105,24 @@ targetSelect.addEventListener('change', (e) => {
 directionSelect.addEventListener('change', (e) => {
     if (e.target.value === 'from-bottom') params.y = '100%';
     if (e.target.value === 'from-top') params.y = '-100%';
+    scriptPreview(params, scriptPreviewEL);
+});
+
+alignmentSelect.addEventListener('change', (e) => {
+    if (e.target.value === 'left') {
+        textOriginal.style.textAlign = 'left';
+        textOriginal.parentElement.style.justifyContent = 'left';
+        target.forEach((el) => {
+            el.style.textAlign = 'left';
+        });
+    }
+    if (e.target.value === 'center') {
+        textOriginal.style.textAlign = 'center';
+        textOriginal.parentElement.style.justifyContent = 'center';
+        target.forEach((el) => {
+            el.style.textAlign = 'center';
+        });
+    }
 });
 
 function setRangeVal(target) {
@@ -110,6 +133,7 @@ function setRangeVal(target) {
 
 transformOriginSelect.addEventListener('change', () => {
     params.transformOrigin = transformOriginSelect.value;
+    scriptPreview(params, scriptPreviewEL);
 });
 
 perspectiveRange.addEventListener('input', (e) => {
@@ -118,6 +142,14 @@ perspectiveRange.addEventListener('input', (e) => {
         const parent = el.parentElement;
         parent.style.perspective = `${e.target.value}px`;
     });
+
+    cssPreviewEL.innerHTML = `<pre>
+<code class="language-css">
+.direct-parent-of-target {
+    perspective: ${e.target.value}px;
+}
+</code>
+</pre>`;
 });
 
 // perspectiveResetBtn.addEventListener('click', () => {
@@ -133,14 +165,17 @@ staggerRange.addEventListener('input', (e) => {
 rotateXRange.addEventListener('input', (e) => {
     setRangeVal(e.target);
     params.rotationX = `${e.target.value}`;
+    if (e.target.value === '0') delete params.rotationX;
 });
 rotateYRange.addEventListener('input', (e) => {
     setRangeVal(e.target);
     params.rotationY = `${e.target.value}`;
+    if (e.target.value === '0') delete params.rotationY;
 });
 rotateZRange.addEventListener('input', (e) => {
     setRangeVal(e.target);
     params.rotationZ = `${e.target.value}`;
+    if (e.target.value === '0') delete params.rotationZ;
 });
 
 resetAllBtn.addEventListener('click', () => {
@@ -154,9 +189,23 @@ resetAllBtn.addEventListener('click', () => {
     target = lines;
     params = {
         y: '100%',
-        stagger: { each: 0.1 },
+        stagger: { each: 0 },
         clearProps: 'transform,transform-origin',
         transformOrigin: 'left top',
         repeatRefresh: true,
     };
+    scriptPreview(params, scriptPreviewEL);
+    textOriginal.style.textAlign = 'left';
+    textOriginal.parentElement.style.justifyContent = 'left';
+    target.forEach((el) => {
+        el.style.textAlign = 'left';
+    });
+
+    cssPreviewEL.innerHTML = '';
+});
+
+document.querySelectorAll("[type='range']").forEach((input) => {
+    input.addEventListener('input', () => {
+        scriptPreview(params, scriptPreviewEL);
+    });
 });
