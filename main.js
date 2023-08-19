@@ -2,7 +2,7 @@ console.log('heeeey');
 import SplitType from 'split-type';
 import { gsap } from 'gsap/all';
 
-import scriptPreview from './scriptPreview';
+import scriptPreview from './src/scriptPreview';
 const splittedText = new SplitType('.text-target', {
     types: 'lines, words, chars',
 });
