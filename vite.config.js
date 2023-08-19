@@ -10,7 +10,7 @@ export default defineConfig({
         minify: true,
         manifest: true,
         rollupOptions: {
-            input: './src/main.js',
+            input: '.main.js',
         },
     },
 });
