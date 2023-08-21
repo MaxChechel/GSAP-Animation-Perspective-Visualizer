@@ -9,7 +9,7 @@ ${
     typeof paramsObj.transformOrigin !== 'undefined'
         ? `transform-origin: ${paramsObj.transformOrigin},`
         : ''
-},
+}
 ${
     typeof paramsObj.rotationX !== 'undefined'
         ? `rotationX: ${paramsObj.rotationX},`
