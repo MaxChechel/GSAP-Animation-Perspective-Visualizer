@@ -5,7 +5,11 @@ tl.from(target, {
 y: ${paramsObj.y},
 opacity: 0,
 stagger: { each: ${paramsObj.stagger.each} },
-transformOrigin: '${paramsObj.transformOrigin}',
+transformOrigin: '${
+        typeof paramsObj.transformOrigin !== 'undefined'
+            ? `transform-origin: ${paramsObj.transformOrigin},`
+            : ''
+    }',
 ${
     typeof paramsObj.rotationX !== 'undefined'
         ? `rotationX: ${paramsObj.rotationX},`
