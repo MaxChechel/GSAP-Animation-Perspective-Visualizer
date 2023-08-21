@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
         opacity: 0,
         stagger: { each: 0.1 },
         clearProps: 'transform,transform-origin',
-        transformOrigin: 'left top',
         repeatRefresh: true,
     };
     scriptPreview(params, scriptPreviewEL);
@@ -85,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
             opacity: 0,
             stagger: { each: 0.1 },
             clearProps: 'transform,transform-origin',
-            transformOrigin: 'left top',
             repeatRefresh: true,
         });
         activeTimeline = tl;
