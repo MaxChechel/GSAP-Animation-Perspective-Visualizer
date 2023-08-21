@@ -192,9 +192,9 @@ document.addEventListener('DOMContentLoaded', () => {
         target = lines;
         params = {
             y: '100%',
+            opacity: 0,
             stagger: { each: 0 },
             clearProps: 'transform,transform-origin',
-            transformOrigin: 'left top',
             repeatRefresh: true,
         };
         scriptPreview(params, scriptPreviewEL);

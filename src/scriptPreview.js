@@ -3,6 +3,7 @@ export default function scriptPreview(paramsObj, previewEl) {
 <code class="language-javascript">
 tl.from(target, {
 y: ${paramsObj.y},
+opacity: 0,
 stagger: { each: ${paramsObj.stagger.each} },
 transformOrigin: '${paramsObj.transformOrigin}',
 ${
