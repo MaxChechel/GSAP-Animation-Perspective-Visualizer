@@ -89,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
         activeTimeline = tl;
         tl.from(target, params);
         tl.restart();
-        console.log(tl, params);
     }
 
     playBtn.addEventListener('click', () => {
