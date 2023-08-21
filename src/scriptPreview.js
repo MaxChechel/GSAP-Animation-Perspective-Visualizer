@@ -5,7 +5,7 @@ tl.from(target, {
 y: ${paramsObj.y},
 opacity: 0,
 stagger: { each: ${paramsObj.stagger.each} },
-transformOrigin: '${
+'${
         typeof paramsObj.transformOrigin !== 'undefined'
             ? `transform-origin: ${paramsObj.transformOrigin},`
             : ''
