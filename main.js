@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearProps: 'transform,transform-origin',
         repeatRefresh: true,
     };
+    console.log(params.transformOrigin);
     scriptPreview(params, scriptPreviewEL);
     //Clear inline styles
     function clearInlineStyles(targets) {
