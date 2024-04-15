@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         stagger: { each: 0.1 },
         clearProps: 'transform,transform-origin',
         repeatRefresh: true,
+        ease: 'none',
     };
     console.log(params.transformOrigin);
     scriptPreview(params, scriptPreviewEL);
