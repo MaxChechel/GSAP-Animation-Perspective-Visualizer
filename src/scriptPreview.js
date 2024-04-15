@@ -7,26 +7,26 @@ tl.from(target, {
     y: ${paramsObj.y},
     opacity: 0,
     stagger: { each: ${paramsObj.stagger.each} },
-${
-    typeof paramsObj.transformOrigin !== 'undefined'
-        ? `transform-origin: ${paramsObj.transformOrigin},`
-        : ''
-}
-${
-    typeof paramsObj.rotationX !== 'undefined'
-        ? `rotationX: ${paramsObj.rotationX},`
-        : ''
-}
-${
-    typeof paramsObj.rotationY !== 'undefined'
-        ? `rotationY: ${paramsObj.rotationY},`
-        : ''
-}
-${
-    typeof paramsObj.rotationZ !== 'undefined'
-        ? `rotationZ: ${paramsObj.rotationZ},`
-        : ''
-}
+    ${
+        typeof paramsObj.transformOrigin !== 'undefined'
+            ? `transform-origin: ${paramsObj.transformOrigin},`
+            : ''
+    }
+    ${
+        typeof paramsObj.rotationX !== 'undefined'
+            ? `rotationX: ${paramsObj.rotationX},`
+            : ''
+    }
+    ${
+        typeof paramsObj.rotationY !== 'undefined'
+            ? `rotationY: ${paramsObj.rotationY},`
+            : ''
+    }
+    ${
+        typeof paramsObj.rotationZ !== 'undefined'
+            ? `rotationZ: ${paramsObj.rotationZ},`
+            : ''
+    }
 });
 </code>
 </pre>`;
