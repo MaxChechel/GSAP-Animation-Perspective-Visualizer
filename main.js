@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '#transformOriginSelect'
     );
     const easeSelect = document.querySelector('#easeSelect');
+    const easeModeSelect = document.querySelector('#easeModeSelect');
 
     const perspectiveRange = document.querySelector('#perspectiveRange');
     const staggerRange = document.querySelector('#staggerRange');
@@ -115,8 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     //Easing
+    let easeMode = 'in';
     easeSelect.addEventListener('change', (e) => {
-        const easeValue = e.target.value;
+        easeMode = e.target.value;
+    });
+    easeSelect.addEventListener('change', (e) => {
+        const easeValue = `e.target.value${easeMode}`;
         params.ease = easeValue;
         scriptPreview(params, scriptPreviewEL);
     });
