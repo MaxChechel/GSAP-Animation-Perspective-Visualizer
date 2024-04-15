@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const transformOriginSelect = document.querySelector(
         '#transformOriginSelect'
     );
+    const easeSelect = document.querySelector('#easeSelect');
 
     const perspectiveRange = document.querySelector('#perspectiveRange');
     const staggerRange = document.querySelector('#staggerRange');
@@ -106,6 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
     directionSelect.addEventListener('change', (e) => {
         if (e.target.value === 'from-bottom') params.y = '100%';
         if (e.target.value === 'from-top') params.y = '-100%';
+        scriptPreview(params, scriptPreviewEL);
+    });
+
+    //Easing
+    easeSelect.addEventListener('change', (e) => {
+        const easeValue = e.target.value;
+        params.ease = easeValue;
         scriptPreview(params, scriptPreviewEL);
     });
 
