@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const perspectiveRange = document.querySelector('#perspectiveRange');
     const staggerRange = document.querySelector('#staggerRange');
+    const durationRange = document.querySelector('#durationRange');
 
     const rotateXRange = document.querySelector('#rotateXRange');
     const rotateYRange = document.querySelector('#rotateYRange');
@@ -52,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeTimeline = null;
 
     let params = {
+        duration: 0.4,
         y: '110%',
         opacity: 0,
         stagger: { each: 0.1 },
@@ -169,6 +171,10 @@ document.addEventListener('DOMContentLoaded', () => {
     //         parent.style.perspective = 'none';
     //     });
     // });
+    durationRange.addEventListener('input', (e) => {
+        setRangeVal(e.target);
+        params.duration = `${e.target.value}`;
+    });
     staggerRange.addEventListener('input', (e) => {
         setRangeVal(e.target);
         params.stagger.each = `${e.target.value}`;
