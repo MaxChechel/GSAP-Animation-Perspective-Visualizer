@@ -214,6 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         cssPreviewEL.innerHTML = '';
+        console.log(params);
     });
 
     document.querySelectorAll("[type='range']").forEach((input) => {
