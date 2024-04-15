@@ -61,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
         repeatRefresh: true,
         ease: 'none',
     };
-    console.log(params.transformOrigin);
     scriptPreview(params, scriptPreviewEL);
     //Clear inline styles
     function clearInlineStyles(targets) {
@@ -85,6 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         let tl = gsap.timeline({
+            duration: 0.4,
+            ease: 'none',
             y: '110%',
             opacity: 0,
             stagger: { each: 0.1 },
@@ -205,6 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         target = lines;
         params = {
+            duration: 0.4,
             y: '100%',
             opacity: 0,
             stagger: { each: 0 },
@@ -220,7 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         cssPreviewEL.innerHTML = '';
-        console.log(params);
     });
 
     document.querySelectorAll("[type='range']").forEach((input) => {

@@ -2,6 +2,8 @@ export default function scriptPreview(paramsObj, previewEl) {
     previewEl.innerHTML = `<pre>
 <code class="language-javascript">
 tl.from(target, {
+duration: ${paramsObj.duration},
+ease: '${paramsObj.ease}',
 y: ${paramsObj.y},
 opacity: 0,
 stagger: { each: ${paramsObj.stagger.each} },
