@@ -116,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const easeValue = e.target.value;
         params.ease = easeValue;
         scriptPreview(params, scriptPreviewEL);
+        console.log(params);
     });
 
     alignmentSelect.addEventListener('change', (e) => {
@@ -203,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stagger: { each: 0 },
             clearProps: 'transform,transform-origin',
             repeatRefresh: true,
+            ease: 'none',
         };
         scriptPreview(params, scriptPreviewEL);
         textOriginal.style.textAlign = 'left';
