@@ -116,12 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     //Easing
-    // let easeMode = 'in';
-    // easeSelect.addEventListener('change', (e) => {
-    //     easeMode = e.target.value;
-    // });
+    let easeMode = 'in';
     easeSelect.addEventListener('change', (e) => {
-        const easeValue = e.target.value;
+        easeMode = e.target.value;
+    });
+    easeSelect.addEventListener('change', (e) => {
+        const easeValue = e.target.value + easeMode;
         params.ease = easeValue;
         scriptPreview(params, scriptPreviewEL);
     });
