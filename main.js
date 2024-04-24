@@ -237,17 +237,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .split('\n')
             .filter((line) => line.trim() !== '');
         const code = codeLines.join('\n');
-        navigator.clipboard.writeText(code).then(
-            () => {
-                copyTimelineToClipboardBtn.textContent = 'Copied!';
-                setTimeout(() => {
-                    copyTimelineToClipboardBtn.textContent =
-                        'Copy to clipboard';
-                }, 2000);
-            },
-            (err) => {
-                console.error('Failed to copy: ', err);
-            }
-        );
+        navigator.clipboard.writeText(code);
     });
 });
