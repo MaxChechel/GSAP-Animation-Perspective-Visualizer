@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetAllBtn = document.querySelector('[data-animation-reset-all]');
     const scriptPreviewEL = document.querySelector('[data-script-preview]');
     const cssPreviewEL = document.querySelector('[data-css-preview]');
+    const copyTimelineToClipboardBtn = document.querySelector('.copy-link');
 
     const perspectiveResetBtn = document.querySelector(
         '[animation-pespective-reset]'
@@ -228,5 +229,25 @@ document.addEventListener('DOMContentLoaded', () => {
         input.addEventListener('input', () => {
             scriptPreview(params, scriptPreviewEL);
         });
+    });
+    //Copy timeline to clipboard
+    copyTimelineToClipboardBtn.addEventListener('click', () => {
+        const codeBlock = document.querySelector('.language-javascript');
+        const codeLines = codeBlock.innerHTML
+            .split('\n')
+            .filter((line) => line.trim() !== '');
+        const code = codeLines.join('\n');
+        navigator.clipboard.writeText(code).then(
+            () => {
+                copyTimelineToClipboardBtn.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyTimelineToClipboardBtn.textContent =
+                        'Copy to clipboard';
+                }, 2000);
+            },
+            (err) => {
+                console.error('Failed to copy: ', err);
+            }
+        );
     });
 });
