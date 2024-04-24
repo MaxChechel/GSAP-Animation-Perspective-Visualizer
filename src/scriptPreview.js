@@ -4,7 +4,7 @@ export default function scriptPreview(paramsObj, previewEl) {
 tl.from(target, {
     duration: ${paramsObj.duration},
     ease: '${paramsObj.ease}',
-    y: ${paramsObj.y},
+    y: '${paramsObj.y}',
     opacity: 0,
     stagger: { each: ${paramsObj.stagger.each} },
     ${
