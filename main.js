@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 setTimeout(() => {
                     tl.reverse();
-                }, 2000);
+                }, 1000);
             },
             (err) => {
                 console.error('Failed to copy: ', err);
