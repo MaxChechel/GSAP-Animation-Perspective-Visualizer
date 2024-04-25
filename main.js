@@ -233,10 +233,29 @@ document.addEventListener('DOMContentLoaded', () => {
     //Copy timeline to clipboard
     copyTimelineToClipboardBtn.addEventListener('click', () => {
         const codeBlock = document.querySelector('.language-javascript');
+        const copyIcon = document.querySelector('.copy-icon');
+        const copyIconCheck = document.querySelector('.copy-icon-check');
         const codeLines = codeBlock.innerHTML
             .split('\n')
             .filter((line) => line.trim() !== '');
         const code = codeLines.join('\n');
-        navigator.clipboard.writeText(code);
+        navigator.clipboard.writeText(code).then(
+            () => {
+                const tl = gsap.timeline();
+                tl.to(copyIcon, {
+                    opacity: 0,
+                    duration: 0.3,
+                }).to(copyIconCheck, {
+                    opacity: 1,
+                    duration: 0.3,
+                });
+                setTimeout(() => {
+                    tl.reverse();
+                }, 2000);
+            },
+            (err) => {
+                console.error('Failed to copy: ', err);
+            }
+        );
     });
 });
