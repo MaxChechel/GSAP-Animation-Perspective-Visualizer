@@ -244,10 +244,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const tl = gsap.timeline();
                 tl.to(copyIcon, {
                     opacity: 0,
-                    duration: 0.3,
+                    duration: 0.2,
                 }).to(copyIconCheck, {
                     opacity: 1,
-                    duration: 0.3,
+                    duration: 0.2,
                 });
                 setTimeout(() => {
                     tl.reverse();
